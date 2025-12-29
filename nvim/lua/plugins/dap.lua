@@ -25,36 +25,36 @@ return {
 		{ "igorlfs/nvim-dap-view", opts = dap_config },
 	},
 	config = function()
+		local dap = require("dap")
+		local dv = require("dap-view")
+
 		local python_path = table
 			.concat({ vim.fn.stdpath("data"), "mason", "packages", "debugpy", "venv", "bin", "python" }, "/")
 			:gsub("//+", "/")
 		local codelldb_path = table
 			.concat({ vim.fn.stdpath("data"), "mason", "packages", "codelldb", "extension", "adapter", "codelldb" }, "/")
 			:gsub("//+", "/")
+
 		require("mason-nvim-dap").setup({
 			ensure_installed = { "python", "delve", "codelldb" },
 			automatic_setup = true,
 			handlers = {
 				function(config)
-					-- Keep original functionality
 					require("mason-nvim-dap").default_setup(config)
 				end,
-
 				python = function(config)
 					config.adapters = {
 						type = "executable",
 						command = python_path,
-						args = {
-							"-m",
-							"debugpy.adapter",
-						},
+						args = { "-m", "debugpy.adapter" },
 					}
-					require("mason-nvim-dap").default_setup(config) -- don't forget this!
+					require("mason-nvim-dap").default_setup(config)
 				end,
 			},
 		})
+
 		require("nvim-dap-virtual-text").setup({})
-		local dap, dv = require("dap"), require("dap-view")
+
 		dap.configurations.rust = {
 			{
 				name = "Launch file",
@@ -81,18 +81,26 @@ return {
 
 					return cwd .. "/target/debug/" .. bin_name
 				end,
-				--program = function()
-				-- return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
-				--end,
 				cwd = "${workspaceFolder}",
 				stopOnEntry = false,
 			},
 		}
+
+		-- Устанавливаем exception breakpoints после запуска сессии отладки
+		dap.listeners.after.event_initialized["set_exception_breakpoints"] = function()
+			dap.set_exception_breakpoints({ "Warning", "Error", "Exception" })
+		end
+
+		-- Кнопка для ручной установки exception breakpoints с проверкой активной сессии
 		vim.keymap.set("n", "<leader>da", function()
-			require("dap").set_exception_breakpoints({ "Warning", "Error", "Exception" })
-		end, { desc = "Stop on exceptions" }) -- TODO this one doesn't show on which-key
-		dap.defaults.fallback.exception_breakpoints = { "raised" }
-		dap.set_exception_breakpoints({ "Warning", "Error", "Exception" })
+			if dap.session() then
+				dap.set_exception_breakpoints({ "Warning", "Error", "Exception" })
+				print("Exception breakpoints set")
+			else
+				print("No active debug session")
+			end
+		end, { desc = "Stop on exceptions" })
+
 		dap.listeners.before.attach["dap-view-config"] = function()
 			dv.open()
 		end
@@ -106,7 +114,6 @@ return {
 			dv.close()
 		end
 	end,
-	-- dap binds
 	keys = {
 		{
 			"<Leader><F8>",
@@ -124,19 +131,20 @@ return {
 			"<F7>",
 			"<CMD>DapStepInto<CR>",
 			mode = { "n", "v" },
-			desc = "Dap Continue",
+			desc = "Dap Step Into",
 		},
 		{
 			"<F8>",
 			"<CMD>DapStepOver<CR>",
 			mode = { "n", "v" },
-			desc = "Dap Continue",
+			desc = "Dap Step Over",
 		},
 		{
 			"<F9>",
 			"<CMD>DapStepOut<CR>",
 			mode = { "n", "v" },
-			desc = "Dap Continue",
+			desc = "Dap Step Out",
 		},
 	},
 }
+
