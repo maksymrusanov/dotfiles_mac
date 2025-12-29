@@ -24,5 +24,5 @@ vim.keymap.set("i", "<C-s>", "<Esc><cmd>%w<CR>")
 vim.keymap.set("n", "G", "Gzz", { desc = "Center line on middle" })
 vim.keymap.set("n", "j", "jzz", { noremap = true })
 vim.keymap.set("n", "k", "kzz", { noremap = true })
-vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap=true, silent=true })
+vim.api.nvim_set_keymap('n', 'T', '<cmd>lua vim.lsp.buf.hover()<CR>', { noremap=true, silent=true })
 
