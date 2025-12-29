@@ -63,4 +63,4 @@ vim.lsp.config("*", {
 })
 
 -- Enable each language server by filename under the lsp/ folder
-vim.lsp.enable({ "pyright", "luals", "css_lsp", "htmx", "emmet" })
+vim.lsp.enable({ "pyright", "luals", "css_lsp", "htmx", "emmet","rust" })
