@@ -10,22 +10,6 @@ return {
       { "<leader>", mode = { "n", "v" } },
     },
   },
-  config = function()
-    local wk = require("which-key")
-    wk.add({
-      { "<leader>f",     desc = "telescope", group = "telescope" },
-      { "<leader>m",     desc = "markdown",  group = "markdown" },
-      { "<leader><tab>", desc = "neotree" },
-      { "<leader>c",     desc = "code",      group = "code" },
-      { "<leader>?",     desc = "which-key" },
-      -- hide telescope find
-      { "<leader>x",     hidden = true },
-      { "<leader>f1",    hidden = true },
-      { "<leader><F10>", hidden = true },
-      { "<leader>P",     hidden = true },
-      { "<leader>p",     hidden = true },
-    })
-  end,
 
   keys = {
     {

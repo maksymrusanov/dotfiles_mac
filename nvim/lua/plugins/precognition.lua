@@ -4,15 +4,4 @@ return {
     opts = {
       startVisible = true,
     },
-    keys = {
-      {
-        "<leader>p",
-        function ()
-         require("precognition").toggle()
-        end,
-        desc = "precognition",
-      },
-    },
-
-
   }

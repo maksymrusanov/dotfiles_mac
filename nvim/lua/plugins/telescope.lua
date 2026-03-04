@@ -4,8 +4,6 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
-    -- рекомендую убрать тег, чтобы ставилась последняя версия
-    -- tag = "0.1.5", -- <--- лучше удалить для обновления
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       require("telescope").setup({

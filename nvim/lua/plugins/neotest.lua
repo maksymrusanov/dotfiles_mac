@@ -23,12 +23,5 @@ return {
         },
       })
     end,
-    keys = {
-      {
-        "<leader>lt",
-        "<CMD>Neotest summary<cr>",
-        desc = "open neotest summery window",
-      },
-    },
   },
 }

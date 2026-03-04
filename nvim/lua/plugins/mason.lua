@@ -9,6 +9,7 @@ return {
         "lua_ls",
         "emmet_ls",
         "pyright",
+        "rust-analyzer",
       },
     },
     dependencies = {
@@ -37,6 +38,7 @@ return {
         "black",    -- python formatter
         "pylint",
         "eslint_d",
+        "rust-analyzer",
       },
     },
     dependencies = {
