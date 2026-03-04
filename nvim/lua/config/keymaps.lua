@@ -11,4 +11,4 @@ vim.keymap.set({ "n" }, "<Right>", "<Nop>")
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down" })
 vim.keymap.set({ "n", "v", "i" }, "<C-s>", "<cmd>%w<CR>")
-
+vim.keymap.set("i", "<C-s>", "<Esc><cmd>%w<CR>")
