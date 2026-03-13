@@ -21,6 +21,7 @@ return {
 					hide_dotfiles = false,
 					hide_gitignored = true,
 				},
+        follow_current_file = true,
 			},
 			default_component_configs = {
 				container = {
