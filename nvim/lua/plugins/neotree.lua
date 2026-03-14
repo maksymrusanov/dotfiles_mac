@@ -10,28 +10,32 @@ return {
         require("neo-tree").setup({
             close_if_last_window = true,
             popup_border_style = "rounded",
-            window = { position = "left", width = 25 },
 
+            window = {
+                position = "left",
+                width = 25,
+            },
 
             filesystem = {
-    follow_current_file = true,  -- уже есть
-    hijack_netrw_behavior = "open_default",
-    use_libuv_file_watcher = true, -- обновляет дерево при изменениях
-    cwd_target = "current",        -- ключевое: открывать от текущего файла
-},
+                follow_current_file = true,
+                hijack_netrw_behavior = "open_default",
+                use_libuv_file_watcher = true,
+                cwd_target = "current",
+            },
+
             default_component_configs = {
                 container = { enable_character_fade = false },
                 modified = { symbol = "✚", highlight = "NeoTreeModified" },
                 name = { trailing_slash = false, use_git_status_colors = true, highlight = "NeoTreeFileName" },
                 git_status = {
                     symbols = {
-                        added = "A",
+                        added = "+",
                         modified = "M",
                         deleted = "D",
                         renamed = "R",
                         untracked = "U",
                         ignored = "I",
-                        unstaged = "UNS",
+                        unstaged = "-",
                         staged = "S",
                         conflict = "C",
                     },
@@ -43,18 +47,21 @@ return {
     cmd = "Neotree",
 
     keys = {
-    {
-        "<C-t>",
-        function()
-            local current_dir = vim.fn.expand("%:p:h")
-            require("neo-tree.command").execute({
-                toggle = true,
-                position = "left",
-                dir = current_dir, 
-            })
-        end,
-        mode = { "n", "v" },
-        desc = "Neotree"
-    }
-}
+        {
+            "<C-t>",
+            function()
+                local path = vim.fn.expand("%:p:h")
+                if path == "" then
+                    path = vim.loop.cwd() 
+                end
+                require("neo-tree.command").execute({
+                    toggle = true,
+                    position = "left",
+                    dir = path,
+                })
+            end,
+            mode = { "n", "v" },
+            desc = "Neo-tree current file folder",
+        },
+    },
 }
