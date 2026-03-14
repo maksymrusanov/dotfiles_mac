@@ -11,10 +11,13 @@ return {
         "pyright",
         "rust-analyzer",
       },
+
     },
     dependencies = {
       {
+
         "williamboman/mason.nvim",
+        lazy = false,
         opts = {
           ui = {
             icons = {
