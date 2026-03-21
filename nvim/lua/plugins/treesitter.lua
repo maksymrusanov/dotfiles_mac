@@ -21,8 +21,9 @@ return {
       "markdown_inline",
       "python",
       "regex",
+      "rust","ron",
       "scss",
-      "sql",
+      "sqlfluff",
       "toml",
       "vim",
       "vimdoc",
@@ -35,7 +36,6 @@ return {
 
     sync_install = true,
     auto_install = true,
-    ignore_install = { "javascript" },
 
     highlight = {
       enable = false,
