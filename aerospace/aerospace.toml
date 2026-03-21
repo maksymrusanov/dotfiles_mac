@@ -45,7 +45,7 @@ automatically-unhide-macos-hidden-apps = false
 # even when they are invisible.
 # This config version is only available since 'config-version = 2'
 # Fallback value (if you omit the key): persistent-workspaces = []
-persistent-workspaces = ["1", "2", "3","4"]
+persistent-workspaces = ["1", "2", "3"]
 
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -103,7 +103,7 @@ on-mode-changed = []
 cmd-enter = '''exec-and-forget open -a /Applications/kitty.app'''
 alt-t = '''exec-and-forget open -a /Applications/Telegram.app/'''
 alt-d='''exec-and-forget open -a /Applications/Docker.app/'''
-alt-a='''exec-and-forget open -a /Applications/Arc.app/'''
+alt-s='''exec-and-forget open -a /Applications/Safari.app/'''
 
 alt-o='''exec-and-forget open -a /Applications/Ollama.app/'''
     alt-slash = 'layout tiles horizontal vertical'
@@ -129,13 +129,11 @@ alt-o='''exec-and-forget open -a /Applications/Ollama.app/'''
     alt-1 = 'workspace 1'
     alt-2 = 'workspace 2'
     alt-3 = 'workspace 3'
-    alt-4 = 'workspace 4'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     alt-shift-1 = 'move-node-to-workspace 1'
     alt-shift-2 = 'move-node-to-workspace 2'
     alt-shift-3 = 'move-node-to-workspace 3'
-    alt-shift-4 = 'move-node-to-workspace 4'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     alt-tab = 'workspace-back-and-forth'
@@ -157,10 +155,10 @@ alt-o='''exec-and-forget open -a /Applications/Ollama.app/'''
     #s = ['layout sticky tiling', 'mode main']
 
 
-    alt-shift-h = ['join-with left', 'mode main']
-    alt-shift-j = ['join-with down', 'mode main']
-    alt-shift-k = ['join-with up', 'mode main']
-    alt-shift-l = ['join-with right', 'mode main']
+    alt-shift-left = ['join-with left', 'mode main']
+    alt-shift-down = ['join-with down', 'mode main']
+    alt-shift-up = ['join-with up', 'mode main']
+    alt-shift-right = ['join-with right', 'mode main']
 #logic for place app in specfic screen
 
 # Terminal → workspace 1
@@ -170,10 +168,9 @@ run = "move-node-to-workspace 1"
 
 # Browser → workspace 2
 [[on-window-detected]]
-if.app-id = 'company.thebrowser.Browser'
+if.app-id = 'com.apple.Safari'
 run = "move-node-to-workspace 2"
-
-# Catch-all (everything else) → workspace 3
+# other apps
 [[on-window-detected]]
 run = "move-node-to-workspace 3"
 
