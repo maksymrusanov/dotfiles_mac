@@ -42,5 +42,5 @@ compinit
 # tmux safe autostart
 # ========================
 if command -v tmux >/dev/null && [[ -z "$TMUX" && -t 1 && -z "$SSH_CONNECTION" ]]; then
-  tmux attach || tmux new
+  tmux attach || tmux -f ~/.tmux/.tmux.conf new-session
 fi
