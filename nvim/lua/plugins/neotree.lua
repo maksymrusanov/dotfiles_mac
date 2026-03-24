@@ -1,19 +1,29 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
-	event = "User FilePost",
+	cmd = "Neotree",
+
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
 		"MunifTanjim/nui.nvim",
 	},
+
 	config = function()
-		require("neo-tree").setup({
+		local neotree = require("neo-tree")
+
+		neotree.setup({
 			close_if_last_window = true,
 			popup_border_style = "rounded",
+
 			filesystem = {
-				follow_current_file = true,
-				hijack_netrw_behavior = "open_current", -- заменяет стандартное открытие
-				hide_dotfiles = false,
+				filtered_items = {
+					hide_dotfiles = false,
+				},
+				follow_current_file = {
+					enabled = true,
+					leave_dirs_open = false,
+				},
+				hijack_netrw_behavior = "open_current",
 			},
 
 			window = {
@@ -21,17 +31,15 @@ return {
 				width = 25,
 			},
 
-			filesystem = {
-				follow_current_file = true,
-				hijack_netrw_behavior = "open_default",
-				use_libuv_file_watcher = true,
-				cwd_target = "current",
-			},
-
 			default_component_configs = {
 				container = { enable_character_fade = false },
-				modified = { symbol = "✚", highlight = "NeoTreeModified" },
-				name = { trailing_slash = false, use_git_status_colors = true, highlight = "NeoTreeFileName" },
+				modified = { symbol = "✚" },
+
+				name = {
+					trailing_slash = false,
+					use_git_status_colors = true,
+				},
+
 				git_status = {
 					symbols = {
 						added = "+",
@@ -49,16 +57,13 @@ return {
 		})
 	end,
 
-	cmd = "Neotree",
-
 	keys = {
 		{
 			"<C-t>",
 			function()
-				local path = vim.fn.expand("%:p:h")
-				if path == "" then
-					path = vim.loop.cwd()
-				end
+				local file = vim.api.nvim_buf_get_name(0)
+				local path = file ~= "" and vim.fs.dirname(file) or vim.loop.cwd()
+
 				require("neo-tree.command").execute({
 					toggle = true,
 					position = "left",
