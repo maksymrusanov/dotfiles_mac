@@ -47,9 +47,6 @@ alt-shift-right = 'move right'
 alt-h = 'layout tiles horizontal vertical'
 alt-v = 'layout accordion horizontal vertical'
 
-# resize
-alt-minus = 'resize smart -50'
-alt-equal = 'resize smart +50'
 
 # workspaces
 alt-1 = 'workspace 1'
