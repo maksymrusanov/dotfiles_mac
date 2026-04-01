@@ -66,7 +66,7 @@ return {
 
 				require("neo-tree.command").execute({
 					toggle = true,
-					position = "left",
+					position = "right",
 					dir = path,
 				})
 			end,
