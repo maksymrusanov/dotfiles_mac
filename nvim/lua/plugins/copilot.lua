@@ -1,24 +1,16 @@
 return {
 
-	"zbirenbaum/copilot.lua",
+	"github/copilot.vim",
 	cmd = "Copilot",
 	build = ":Copilot auth",
 	event = "BufReadPost",
-	opts = {
-		suggestion = {
-			enabled = not vim.g.ai_cmp,
-			auto_trigger = true,
-			hide_during_completion = vim.g.ai_cmp,
-			keymap = {
-				accept = false, -- handled manually in keymaps.lua
-				next = "<M-]>",
-				prev = "<M-[>",
-			},
-		},
-		panel = { enabled = false },
-		filetypes = {
-			markdown = true,
-			help = true,
-		},
-	},
+	init = function()
+		vim.g.copilot_no_tab_map = true -- accept handled manually in keymaps.lua
+		vim.g.copilot_filetypes = { markdown = true, help = true }
+	end,
+	config = function()
+		-- next / prev suggestions (mirrors zbirenbaum keymap)
+		vim.keymap.set("i", "<M-]>", "<Plug>(copilot-next)", { silent = true })
+		vim.keymap.set("i", "<M-[>", "<Plug>(copilot-previous)", { silent = true })
+	end,
 }
