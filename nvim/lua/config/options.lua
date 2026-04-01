@@ -1,3 +1,5 @@
+vim.g.ai_cmp = false -- use copilot inline suggestions, not cmp source
+
 vim.opt.showcmd = true
 vim.opt.relativenumber = true
 vim.opt.showtabline = 0
