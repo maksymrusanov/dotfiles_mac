@@ -14,9 +14,9 @@ vim.keymap.set({ "n", "v", "i" }, "<C-s>","<Esc><cmd>%w<CR>")
 
 -- Accept Copilot suggestion with <Right>, fallback to normal cursor movement
 vim.keymap.set("i", "<Right>", function()
-  local ok, suggestion = pcall(require, "copilot.suggestion")
-  if ok and suggestion.is_visible() then
-    suggestion.accept()
+  local suggestion = vim.fn["copilot#GetDisplayedSuggestion"]()
+  if suggestion and suggestion.text ~= "" then
+    vim.fn["copilot#Accept"]("")
   else
     vim.api.nvim_feedkeys(
       vim.api.nvim_replace_termcodes("<Right>", true, false, true), "n", false
