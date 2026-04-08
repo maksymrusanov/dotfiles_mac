@@ -2,6 +2,7 @@ vim.g.ai_cmp = false -- use copilot inline suggestions, not cmp source
 
 vim.opt.showcmd = true
 vim.opt.relativenumber = true
+vim.opt.number = true
 vim.opt.showtabline = 0
 vim.opt.nu = true
 vim.opt.tabstop = 2
@@ -34,10 +35,9 @@ vim.g.loaded_node_provider = 0
 -- command autocomplete
 vim.g.wildmenu = true
 vim.opt.listchars = "tab:»·,trail:·,nbsp:·"
-vim.diagnostic.config({ virtual_text = true})
+vim.diagnostic.config({ virtual_text = true })
 
 -- views can only be fully collapsed with the global statusline
 vim.opt.laststatus = 3
-
 
 vim.lsp.set_log_level("debug")
