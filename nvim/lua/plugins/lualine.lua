@@ -5,7 +5,6 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 	config = function()
-
 		local function lsp()
 			local clients = vim.lsp.get_clients({ bufnr = 0 })
 
@@ -38,12 +37,10 @@ return {
 				lualine_x = {
 					"diagnostics",
 					lsp,
-					"filetype",
 				},
 
-        lualine_y = {},
+				lualine_y = {},
 				lualine_z = { "location" },
-
 			},
 		})
 	end,
