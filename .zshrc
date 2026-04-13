@@ -10,7 +10,7 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
 # минимальные плагины
-plugins=(git zsh-autosuggestions autopep8 zsh-syntax-highlighting)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 # загрузка Oh My Zsh
 source $ZSH/oh-my-zsh.sh
@@ -34,17 +34,12 @@ alias vc="python3 -m venv .venv"
 alias va="source .venv/bin/activate"
 alias vd="deactivate"
 
-# Docker CLI completions
-fpath=(/Users/max/.docker/completions $fpath)
-autoload -Uz compinit
-compinit
 # ========================
 # tmux safe autostart
 # ========================
 if command -v tmux >/dev/null && [[ -z "$TMUX" && -t 1 && -z "$SSH_CONNECTION" ]]; then
-  tmux attach || tmux -f ~/.tmux/.tmux.conf new-session
+  tmux attach 2>/dev/null || tmux -f ~/.tmux/tmux.conf new-session
 fi
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/max/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -59,4 +54,3 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
