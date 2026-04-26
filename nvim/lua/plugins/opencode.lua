@@ -1,14 +1,15 @@
 return {
 	"nickjvandyke/opencode.nvim",
-	version = "*",
-
+	version = "*", -- Latest stable release
 	dependencies = {
 		{
+			-- `snacks.nvim` integration is recommended, but optional
+			---@module "snacks" <- Loads `snacks.nvim` types for configuration intellisense
 			"folke/snacks.nvim",
 			optional = true,
 			opts = {
-				input = {},
-				picker = {
+				input = {}, -- Enhances `ask()`
+				picker = { -- Enhances `select()`
 					actions = {
 						opencode_send = function(...)
 							return require("opencode").snacks_picker_send(...)
@@ -25,53 +26,41 @@ return {
 			},
 		},
 	},
+	config = function()
+		---@type opencode.Opts
+		vim.g.opencode_opts = {
+			-- Your configuration, if any; goto definition on the type or field for details
+		}
 
-	-- 🔥 ВАЖНО: добавили opts
-	opts = {},
+		vim.o.autoread = true -- Required for `opts.events.reload`
 
-	config = function(_, opts)
-		local oc = require("opencode")
-		oc.setup(opts)
+		-- Recommended/example keymaps
+		vim.keymap.set({ "n", "x" }, "<C-a>", function()
+			require("opencode").ask("@this: ", { submit = true })
+		end, { desc = "Ask opencode…" })
+		vim.keymap.set({ "n", "x" }, "<C-x>", function()
+			require("opencode").select()
+		end, { desc = "Execute opencode action…" })
+		vim.keymap.set({ "n", "t" }, "<C-.>", function()
+			require("opencode").toggle()
+		end, { desc = "Toggle opencode" })
 
-		local map = vim.keymap.set
+		vim.keymap.set({ "n", "x" }, "go", function()
+			return require("opencode").operator("@this ")
+		end, { desc = "Add range to opencode", expr = true })
+		vim.keymap.set("n", "goo", function()
+			return require("opencode").operator("@this ") .. "_"
+		end, { desc = "Add line to opencode", expr = true })
 
-		-- 🔥 основной workflow
-		map("n", "<leader>aa", function()
-			oc.ask()
-		end, { desc = "Ask AI" })
+		vim.keymap.set("n", "<S-C-u>", function()
+			require("opencode").command("session.half.page.up")
+		end, { desc = "Scroll opencode up" })
+		vim.keymap.set("n", "<S-C-d>", function()
+			require("opencode").command("session.half.page.down")
+		end, { desc = "Scroll opencode down" })
 
-		map("v", "<leader>oa", function()
-			oc.ask_selection()
-		end, { desc = "Ask about selection" })
-
-		map("n", "<leader>ot", function()
-			oc.toggle()
-		end, { desc = "Toggle AI window" })
-
-		map("n", "<leader>os", function()
-			oc.select()
-		end, { desc = "AI actions" })
-
-		-- ⚡ быстрые команды
-		map("v", "<leader>oe", function()
-			oc.ask("Explain this code")
-		end)
-
-		map("v", "<leader>of", function()
-			oc.ask("Fix bugs in this code")
-		end)
-
-		map("v", "<leader>or", function()
-			oc.ask("Refactor this code")
-		end)
-
-		-- 📜 скролл
-		map("n", "<leader>ou", function()
-			oc.command("session.half.page.up")
-		end)
-
-		map("n", "<leader>od", function()
-			oc.command("session.half.page.down")
-		end)
+		-- You may want these if you use the opinionated `<C-a>` and `<C-x>` keymaps above — otherwise consider `<leader>o…` (and remove terminal mode from the `toggle` keymap)
+		vim.keymap.set("n", "+", "<C-a>", { desc = "Increment under cursor", noremap = true })
+		vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement under cursor", noremap = true })
 	end,
 }
