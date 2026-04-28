@@ -10,7 +10,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<Leader>go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
 		vim.keymap.set("n", "<Leader>gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
 		vim.keymap.set("n", "<Leader>gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
-    vim.keymap.set("n", "<Leader>gc", vim.lsp.buf.rename, opts)
+		vim.keymap.set("n", "<Leader>gc", vim.lsp.buf.rename, opts)
 
 		vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
 		vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
@@ -22,23 +22,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 				virtual_text = not vim.diagnostic.config().virtual_text,
 			})
 		end, { desc = "toggle diagnostic" })
-
-		--  lsp on/off
-		vim.keymap.set("n", "<leader>tdp", function()
-			vim.lsp.enable("basedpyright", false)
-		end, { desc = "toggle basedright off" })
-
-		vim.keymap.set("n", "<leader>tdP", function()
-			vim.lsp.enable("basedpyright", true)
-		end, { desc = "toggle basedright on" })
-
-		vim.keymap.set("n", "<leader>tdr", function()
-			vim.lsp.enable("ruff", false)
-		end, { desc = "toggle ruff off" })
-
-		vim.keymap.set("n", "<leader>tdR", function()
-			vim.lsp.enable("ruff", true)
-		end, { desc = "toggle ruff on" })
 	end,
 })
 
@@ -63,4 +46,4 @@ vim.lsp.config("*", {
 })
 
 -- Enable each language server by filename under the lsp/ folder
-vim.lsp.enable({ "pyright", "luals", "css_lsp", "htmx", "emmet","rust" })
+vim.lsp.enable({ "pyright", "luals", "css_lsp", "html", "htmx", "emmet", "rust" })
