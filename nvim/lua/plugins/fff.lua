@@ -15,14 +15,14 @@ return {
 	lazy = false, -- the plugin lazy-initialises itself
 	keys = {
 		{
-			"<C-p>",
+			"<leader><leader>",
 			function()
 				require("fff").find_files()
 			end,
 			desc = "FFFind files",
 		},
 		{
-			"<leader><leader>",
+			"<C-p>",
 			function()
 				require("fff").live_grep()
 			end,
