@@ -10,6 +10,7 @@ return {
 				"emmet_ls",
 				"pyright",
 				"rust-analyzer",
+				"hadolint",
 			},
 		},
 		dependencies = {
