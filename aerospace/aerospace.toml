@@ -2,11 +2,6 @@ config-version = 2
 
 start-at-login = true
 
-exec-on-workspace-change = [
-    "/bin/bash",
-    "-c",
-    "/opt/homebrew/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE"
-]
 
 accordion-padding = 0
 default-root-container-layout = 'tiles'
@@ -26,7 +21,7 @@ preset = 'qwerty'
 [mode.main.binding]
 
 # apps
-cmd-enter = "exec-and-forget open -a /Applications/kitty.app/"
+cmd-enter = "exec-and-forget open -a /Applications/kitty.app"
 
 alt-s = 'exec-and-forget open -a /Applications/Safari.app/'
 alt-d = 'exec-and-forget open -a /Applications/Docker.app/'
@@ -58,12 +53,13 @@ alt-v = 'layout accordion horizontal vertical'
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
+alt-4 = 'workspace 4'
 
 # move to workspace
 alt-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
 alt-shift-2 = 'move-node-to-workspace 2 --focus-follows-window'
 alt-shift-3 = 'move-node-to-workspace 3 --focus-follows-window'
-
+alt-shift-4 = 'move-node-to-workspace 4 --focus-follows-window'
 # back & forth (как i3)
 alt-tab = 'workspace-back-and-forth'
 
