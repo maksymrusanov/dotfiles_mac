@@ -33,7 +33,6 @@ alias vim="nvim"
 alias vc="python3 -m venv .venv"
 alias va="source .venv/bin/activate"
 alias vd="deactivate"
-
 # ========================
 # tmux safe autostart
 # ========================
@@ -54,3 +53,7 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+. "$HOME/.local/bin/env"
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uv generate-shell-completion zsh)"
