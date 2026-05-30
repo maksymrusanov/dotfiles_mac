@@ -41,11 +41,11 @@ return {
 			trigger = { prefetch_on_insert = false },
 		},
 		signature = {
-			enabled = false,
+			enabled = true,
 			trigger = {
-				enabled = false, -- if I uncomment this, the keymap won't work anymore
-				show_on_trigger_character = false,
-				show_on_insert_on_trigger_character = false,
+				enabled = true,
+				show_on_trigger_character = true,
+				show_on_insert_on_trigger_character = true,
 			},
 		},
 		-- Default list of enabled providers defined so that you can extend it

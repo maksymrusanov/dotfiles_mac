@@ -4,7 +4,6 @@ return {
 	filetypes = { "python" },
 	root_markers = {
 		"pyproject.toml",
-		"main.py",
 		"setup.cfg",
 		"requirements.txt",
 		"Pipfile",
@@ -12,7 +11,7 @@ return {
 		".git",
 	},
 	settings = {
-		basedpyright = {
+		python = {
 			analysis = {
 				autoSearchPaths = true,
 				useLibraryCodeForTypes = true,
