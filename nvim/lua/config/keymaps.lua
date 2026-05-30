@@ -5,7 +5,7 @@ vim.keymap.set("n", "<C-j>", "<C-w>j")
 vim.keymap.set("n", "<C-k>", "<C-w>k")
 vim.keymap.set("n", "<C-l>", "<C-w>l")
 vim.keymap.set({ "n", "v", "i" }, "<C-s>", "<cmd>%w<CR>")
-vim.keymap.set({ "v" }, "Y", '"+y') -- E.g: <leader>yy will yank current line to os clipboard
+vim.keymap.set({ "v" }, "Y", '"+y')
 -- Disable arrow keys in normal, insert, and visual modes
 vim.keymap.set({ "n" }, "<Up>", "<Nop>")
 vim.keymap.set({ "n" }, "<Down>", "<Nop>")
@@ -21,23 +21,18 @@ vim.keymap.set({ "n", "v", "i" }, "<C-s>", "<Esc><cmd>%w<CR>")
 vim.keymap.set("n", "<leader>ai", "<cmd>ChatGPT<CR>", {
 	desc = "ChatGPT",
 })
-
 vim.keymap.set({ "n", "v" }, "<leader>ff", "<cmd>ChatGPTEditWithInstruction<CR>", {
 	desc = "Edit with instruction",
 })
-
 vim.keymap.set({ "n", "v" }, "<leader>ak", "<cmd>ChatGPTRun keywords<CR>", {
 	desc = "Keywords",
 })
-
 vim.keymap.set({ "n", "v" }, "<leader>at", "<cmd>ChatGPTRun add_tests<CR>", {
 	desc = "Add Tests",
 })
-
 vim.keymap.set({ "n", "v" }, "<leader>oc", "<cmd>ChatGPTRun optimize_code<CR>", {
 	desc = "Optimize Code",
 })
-
 vim.keymap.set({ "n", "v" }, "<leader>ec", "<cmd>ChatGPTRun explain_code<CR>", {
 	desc = "Explain Code",
 })

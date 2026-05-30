@@ -2,7 +2,7 @@ return {
 	"catgoose/nvim-colorizer.lua",
 	event = "BufReadPre",
 	opts = {
-		filetypes = { "css", "config", "lua" },
+		filetypes = { "css", "config", "lua", "python" },
 		user_default_options = {
 			RGB = true, -- #RGB hex codes
 			RRGGBB = true, -- #RRGGBB hex codes
