@@ -11,16 +11,33 @@ vim.keymap.set({ "n" }, "<Up>", "<Nop>")
 vim.keymap.set({ "n" }, "<Down>", "<Nop>")
 vim.keymap.set({ "n" }, "<Left>", "<Nop>")
 vim.keymap.set({ "n" }, "<Right>", "<Nop>")
+vim.keymap.set("n", "Y", '"+yy', {
+	desc = "Copy line to system clipboard",
+})
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down" })
 vim.keymap.set({ "n", "v", "i" }, "<C-s>", "<Esc><cmd>%w<CR>")
+--chatGPT keymaps
+vim.keymap.set("n", "<leader>ai", "<cmd>ChatGPT<CR>", {
+	desc = "ChatGPT",
+})
 
--- Accept Copilot suggestion with <Right>, fallback to normal cursor movement
-vim.keymap.set("i", "<Right>", function()
-	local ok, suggestion = pcall(require, "copilot.suggestion")
-	if ok and suggestion.is_visible() then
-		suggestion.accept()
-	else
-		vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Right>", true, false, true), "n", false)
-	end
-end, { desc = "Accept Copilot suggestion or move right", silent = true })
+vim.keymap.set({ "n", "v" }, "<leader>ff", "<cmd>ChatGPTEditWithInstruction<CR>", {
+	desc = "Edit with instruction",
+})
+
+vim.keymap.set({ "n", "v" }, "<leader>ak", "<cmd>ChatGPTRun keywords<CR>", {
+	desc = "Keywords",
+})
+
+vim.keymap.set({ "n", "v" }, "<leader>at", "<cmd>ChatGPTRun add_tests<CR>", {
+	desc = "Add Tests",
+})
+
+vim.keymap.set({ "n", "v" }, "<leader>oc", "<cmd>ChatGPTRun optimize_code<CR>", {
+	desc = "Optimize Code",
+})
+
+vim.keymap.set({ "n", "v" }, "<leader>ec", "<cmd>ChatGPTRun explain_code<CR>", {
+	desc = "Explain Code",
+})

@@ -71,3 +71,8 @@ unset __conda_setup
 # uv completion (без дубликата)
 # ========================
 eval "$(uv generate-shell-completion zsh)"
+
+. "$HOME/.local/bin/env"
+
+# OpenClaw Completion
+[ -f "/Users/max/.openclaw/completions/openclaw.zsh" ] && source "/Users/max/.openclaw/completions/openclaw.zsh"
