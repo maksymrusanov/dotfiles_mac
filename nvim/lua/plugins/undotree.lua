@@ -3,7 +3,7 @@ return {
 	cmd = "UndotreeToggle",
 	keys = {
 		{
-			"<leader>tu",
+			"<leader>ut",
 			"<cmd>UndotreeToggle<CR>",
 			desc = "Toggle Undotree",
 		},

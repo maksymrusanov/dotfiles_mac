@@ -27,7 +27,6 @@ return {
 			},
 
 			window = {
-				position = "right",
 				width = 25,
 			},
 
@@ -66,7 +65,7 @@ return {
 
 				require("neo-tree.command").execute({
 					toggle = true,
-					position = "right",
+					position = "left",
 					dir = path,
 				})
 			end,
