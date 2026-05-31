@@ -1,0 +1,30 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+vim.keymap.set("n", "=ap", "ma=ap'a")
+vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "<C-h>", "<C-w>h")
+vim.keymap.set("n", "<C-j>", "<C-w>j")
+vim.keymap.set("n", "<C-k>", "<C-w>k")
+vim.keymap.set("n", "<C-l>", "<C-w>l")
+vim.keymap.set({ "n", "v", "i" }, "<C-s>", "<Esc><cmd>w<CR>", { desc = "Save file" })
+vim.keymap.set({ "v" }, "Y", '"+y')
+-- Disable arrow keys in normal, insert, and visual modes
+vim.keymap.set({ "n" }, "<Up>", "<Nop>")
+vim.keymap.set({ "n" }, "<Down>", "<Nop>")
+vim.keymap.set({ "n" }, "<Left>", "<Nop>")
+vim.keymap.set({ "n" }, "<Right>", "<Nop>")
+vim.keymap.set("n", "Y", '"+yy', {
+	desc = "Copy line to system clipboard",
+})
+
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up" })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down" })
+vim.keymap.set("n", "Q", "<nop>")
+vim.keymap.set("n", "q", "<nop>")
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>g", "ggVG", { desc = "Select all" })
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+vim.keymap.set("i", "jk", "<Esc>")
+vim.keymap.set("n", "<leader>lr", "<cmd>lsp restart<CR>")
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
