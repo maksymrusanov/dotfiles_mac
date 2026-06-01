@@ -17,10 +17,10 @@ return {
 		float_opts = {
 			border = "rounded",
 			width = function()
-				return math.floor(vim.o.columns * 0.9)
+				return math.floor(vim.o.columns * 0.5)
 			end,
 			height = function()
-				return math.floor(vim.o.lines * 0.9)
+				return math.floor(vim.o.lines * 0.5)
 			end,
 		},
 	},
