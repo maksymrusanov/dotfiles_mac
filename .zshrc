@@ -68,11 +68,13 @@ fi
 unset __conda_setup
 
 # ========================
-# uv completion (без дубликата)
+# uv completion
 # ========================
-eval "$(uv generate-shell-completion zsh)"
-
+if command -v uv >/dev/null 2>&1; then
+  eval "$(uv generate-shell-completion zsh)"
+fi
 . "$HOME/.local/bin/env"
 
-# OpenClaw Completion
-[ -f "/Users/max/.openclaw/completions/openclaw.zsh" ] && source "/Users/max/.openclaw/completions/openclaw.zsh"
+
+# opencode
+export PATH=/Users/max/.opencode/bin:$PATH
