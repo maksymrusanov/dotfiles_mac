@@ -7,6 +7,13 @@ return {
 	-- for nixos:
 	-- build = "nix run .#release",
 	opts = {
+		layout = {
+			height = 0.8,
+			width = 0.8,
+			prompt_position = "top",
+			preview_position = "right",
+			preview_size = 0.6,
+		},
 		debug = {
 			enabled = true,
 			show_scores = true,
