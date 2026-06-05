@@ -17,7 +17,6 @@ vim.keymap.set({ "n" }, "<Right>", "<Nop>")
 vim.keymap.set("n", "Y", '"+yy', {
 	desc = "Copy line to system clipboard",
 })
-
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up" })
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down" })
 vim.keymap.set("n", "Q", "<nop>")
@@ -28,3 +27,6 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 vim.keymap.set("i", "jk", "<Esc>")
 vim.keymap.set("n", "<leader>lr", "<cmd>lsp restart<CR>")
 vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]])
+vim.keymap.set("n", "<leader>cw", function()
+	vim.cmd([[g/^\s*$/d]])
+end, { desc = "Delete empty lines" })

@@ -27,6 +27,14 @@ require("lazy").setup({
 	checker = { enabled = false, notify = false },
 	install = {},
 })
+vim.filetype.add({
+	filename = {
+		["docker-compose.yml"] = "yaml.docker-compose",
+		["docker-compose.yaml"] = "yaml.docker-compose",
+		["compose.yml"] = "yaml.docker-compose",
+		["compose.yaml"] = "yaml.docker-compose",
+	},
+})
 require("config.options")
 require("config.keymaps")
 local highlight = {
