@@ -29,7 +29,6 @@ require("lazy").setup({
 })
 require("config.options")
 require("config.keymaps")
-require("config.lsp")
 local highlight = {
 	"RainbowRed",
 	"RainbowYellow",
