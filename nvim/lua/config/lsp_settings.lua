@@ -54,13 +54,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<Leader>go", vim.lsp.buf.type_definition, opts)
 		vim.keymap.set("n", "<Leader>gr", vim.lsp.buf.references, opts)
 		vim.keymap.set("n", "<Leader>gs", vim.lsp.buf.signature_help, opts)
-		vim.keymap.set("n", "<Leader>gc", vim.lsp.buf.rename, opts)
 
 		-- LSP actions
 		vim.keymap.set({ "n", "x" }, "<F3>", function()
-			vim.lsp.buf.format({ async = true })
+			require("conform").format({
+				async = true,
+				timeout_ms = 3000,
+				lsp_fallback = true,
+			})
 		end, opts)
-
 		vim.keymap.set("n", "<F4>", vim.lsp.buf.code_action, opts)
 
 		-- Toggle diagnostics display
@@ -77,7 +79,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end, { buffer = event.buf, desc = "Toggle diagnostics" })
 	end,
 })
-
 local capabilities = {
 	textDocument = {
 		foldingRange = {
