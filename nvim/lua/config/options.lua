@@ -4,7 +4,6 @@ vim.opt.relativenumber = true
 vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.breakindent = true
-vim.opt.showbreak = "↪ "
 
 -- UI
 vim.opt.cursorline = false
