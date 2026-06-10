@@ -51,7 +51,7 @@ vim.keymap.set(
 )
 
 -- Select entire buffer
-vim.keymap.set("n", "<leader>g", "ggVG", {
+vim.keymap.set("n", "<leader>a", "ggVG", {
 	desc = "Select entire buffer",
 })
 
@@ -64,15 +64,10 @@ vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], {
 vim.keymap.set("i", "jk", "<Esc>", {
 	desc = "Exit insert mode",
 })
-vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], {
-	desc = "Exit terminal mode",
-})
 
--- LSP
-vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<CR>", {
-	desc = "Restart LSP",
+vim.keymap.set("n", "<leader>fs", "<cmd>FzfLua lsp_document_symbols<CR>", {
+	desc = "Find document symbols",
 })
-
 -- Cleanup
 vim.keymap.set("n", "<leader>cw", function()
 	vim.cmd([[g/^\s*$/d]])
