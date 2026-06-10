@@ -9,7 +9,7 @@ return {
 				css = { "prettier" },
 				html = { "prettier" },
 				lua = { "stylua" },
-				python = { "black", "isort" },
+				python = { "black", "ruff" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
