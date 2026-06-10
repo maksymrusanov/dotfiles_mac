@@ -74,3 +74,6 @@ vim.keymap.set("n", "<leader>cw", function()
 end, {
 	desc = "Remove empty lines",
 })
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], {
+	desc = "Exit terminal mode",
+})
