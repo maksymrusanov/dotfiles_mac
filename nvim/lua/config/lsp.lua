@@ -5,28 +5,79 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(event)
 		local opts = { buffer = event.buf }
 
-		vim.keymap.set("n", "<Leader>gd", "<cmd>lua vim.lsp.buf.declaration()<cr>", opts)
-		vim.keymap.set("n", "<Leader>gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", opts)
-		vim.keymap.set("n", "<Leader>go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", opts)
-		vim.keymap.set("n", "<Leader>gr", "<cmd>lua vim.lsp.buf.references()<cr>", opts)
-		vim.keymap.set("n", "<Leader>gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts)
+		local function show_diagnostic()
+			vim.diagnostic.open_float(nil, {
+				focus = false,
+				scope = "line",
+			})
+		end
+
+		local function jump_diagnostic(count, severity)
+			vim.diagnostic.jump({
+				count = count,
+				severity = severity,
+			})
+
+			vim.schedule(show_diagnostic)
+		end
+
+		-- Diagnostics navigation
+		vim.keymap.set("n", "]d", function()
+			jump_diagnostic(1)
+		end, opts)
+
+		vim.keymap.set("n", "[d", function()
+			jump_diagnostic(-1)
+		end, opts)
+
+		vim.keymap.set("n", "]e", function()
+			jump_diagnostic(1, vim.diagnostic.severity.ERROR)
+		end, opts)
+
+		vim.keymap.set("n", "[e", function()
+			jump_diagnostic(-1, vim.diagnostic.severity.ERROR)
+		end, opts)
+
+		vim.keymap.set("n", "]w", function()
+			jump_diagnostic(1, vim.diagnostic.severity.WARN)
+		end, opts)
+
+		vim.keymap.set("n", "[w", function()
+			jump_diagnostic(-1, vim.diagnostic.severity.WARN)
+		end, opts)
+
+		vim.keymap.set("n", "<Leader>ge", show_diagnostic, opts)
+
+		-- LSP navigation
+		vim.keymap.set("n", "<Leader>gd", vim.lsp.buf.declaration, opts)
+		vim.keymap.set("n", "<Leader>gi", vim.lsp.buf.implementation, opts)
+		vim.keymap.set("n", "<Leader>go", vim.lsp.buf.type_definition, opts)
+		vim.keymap.set("n", "<Leader>gr", vim.lsp.buf.references, opts)
+		vim.keymap.set("n", "<Leader>gs", vim.lsp.buf.signature_help, opts)
 		vim.keymap.set("n", "<Leader>gc", vim.lsp.buf.rename, opts)
 
-		vim.keymap.set({ "n", "x" }, "<F3>", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts)
-		vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
+		-- LSP actions
+		vim.keymap.set({ "n", "x" }, "<F3>", function()
+			vim.lsp.buf.format({ async = true })
+		end, opts)
 
-		-- vim virtual text diagnostics toggle
-		vim.keymap.set("n", "<leader>tdd", function()
+		vim.keymap.set("n", "<F4>", vim.lsp.buf.code_action, opts)
+
+		-- Toggle diagnostics display
+		vim.keymap.set("n", "<Leader>tdd", function()
+			local cfg = vim.diagnostic.config()
+
+			local lines_enabled = cfg.virtual_lines == true
+			local text_enabled = cfg.virtual_text ~= false
+
 			vim.diagnostic.config({
-				virtual_lines = not vim.diagnostic.config().virtual_lines,
-				virtual_text = not vim.diagnostic.config().virtual_text,
+				virtual_lines = not lines_enabled,
+				virtual_text = not text_enabled,
 			})
-		end, { desc = "toggle diagnostic" })
+		end, { buffer = event.buf, desc = "Toggle diagnostics" })
 	end,
 })
 
--- This is copied straight from blink
--- https://cmp.saghen.dev/installation#merging-lsp-capabilities
 local capabilities = {
 	textDocument = {
 		foldingRange = {
@@ -38,14 +89,11 @@ local capabilities = {
 
 capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
--- Setup language servers.
-
 vim.lsp.config("*", {
 	capabilities = capabilities,
 	root_markers = { ".git" },
 })
 
--- Enable each language server by filename under the lsp/ folder
 vim.lsp.enable({
 	"pyright",
 	"luals",

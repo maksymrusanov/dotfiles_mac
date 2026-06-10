@@ -34,10 +34,10 @@ vim.keymap.set("v", "Y", '"+y', {
 })
 
 -- Disable arrow keys
-vim.keymap.set({ "n", "i", "v" }, "<Up>", "<Nop>")
-vim.keymap.set({ "n", "i", "v" }, "<Down>", "<Nop>")
-vim.keymap.set({ "n", "i", "v" }, "<Left>", "<Nop>")
-vim.keymap.set({ "n", "i", "v" }, "<Right>", "<Nop>")
+vim.keymap.set({ "n" }, "<Up>", "<Nop>")
+vim.keymap.set({ "n" }, "<Down>", "<Nop>")
+vim.keymap.set({ "n" }, "<Left>", "<Nop>")
+vim.keymap.set({ "n" }, "<Right>", "<Nop>")
 
 -- Disable Ex mode
 vim.keymap.set("n", "Q", "<Nop>")
