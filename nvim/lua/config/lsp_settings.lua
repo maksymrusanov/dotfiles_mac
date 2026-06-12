@@ -101,6 +101,7 @@ vim.lsp.enable({
 	"css_lsp",
 	"html",
 	"htmx",
+	"djangohtml",
 	"emmet",
 	"rust",
 	"dockerls",
