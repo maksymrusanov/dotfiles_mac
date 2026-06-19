@@ -70,7 +70,10 @@ run = "move-node-to-workspace 1"
 # browser → 2
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari'
-run = "move-node-to-workspace 2"
+run = "move-node-to-workspace 2 --focus-follows-window"
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+run = "move-node-to-workspace 4 --focus-follows-window"
 # other apps
 [[on-window-detected]]
-run = "move-node-to-workspace 3"
+run = "move-node-to-workspace 3 --focus-follows-window"
