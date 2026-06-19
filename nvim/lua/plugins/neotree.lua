@@ -28,7 +28,7 @@ return {
 			},
 
 			window = {
-				width = 25,
+				width = 40,
 			},
 
 			default_component_configs = {
@@ -66,7 +66,7 @@ return {
 
 				require("neo-tree.command").execute({
 					toggle = true,
-					position = "left",
+					position = "right",
 					hide_dotfiles = false,
 					hide_hidden = false,
 					dir = path,
