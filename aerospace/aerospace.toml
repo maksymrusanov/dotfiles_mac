@@ -76,4 +76,5 @@ if.app-id = 'com.hnc.Discord'
 run = "move-node-to-workspace 4 --focus-follows-window"
 # other apps
 [[on-window-detected]]
+if="true"
 run = "move-node-to-workspace 3 --focus-follows-window"
