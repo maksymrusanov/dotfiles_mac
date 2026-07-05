@@ -27,7 +27,13 @@ sudo apt install -y \
   unzip \
   gcc \
   g++ \
-  make
+  make \
+  tmux \
+  gh \
+  zsh \
+  kitty \
+ zsh-autosuggestions
+
 
 echo "🧠 Checking versions..."
 node --version

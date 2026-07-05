@@ -10,7 +10,7 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 
 # минимальные плагины
-plugins=( zsh-autocomplete git zsh-autosuggestions)
+plugins=(zsh-autosuggestions)
 
 
 source $ZSH/oh-my-zsh.sh
