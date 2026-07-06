@@ -29,7 +29,8 @@ zstyle ':vcs_info:git:*' formats '%F{green}(%b)%f'
 
 setopt PROMPT_SUBST
 
-PROMPT='%F{white}%~%f ${vcs_info_msg_0_} > '
+PROMPT='%F{white}%~%f ${vcs_info_msg_0_} 
+> '
 
 # ========================
 # Editor
