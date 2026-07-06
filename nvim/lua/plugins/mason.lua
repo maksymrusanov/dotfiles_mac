@@ -5,7 +5,7 @@ return {
 			-- list of servers for mason to install
 			ensure_installed = {
 				"html",
-				"cssls","clang",
+				"cssls",
 				"lua_ls",
 				"emmet_ls",
 				"pyright",
