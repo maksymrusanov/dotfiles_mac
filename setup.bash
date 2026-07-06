@@ -12,6 +12,7 @@ sudo apt install -y \
   zsh kitty \
   python3 python3-pip python3-venv python3-dev
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
 
 echo "🚀 Installing Node.js (LTS 20)..."

@@ -92,17 +92,18 @@ capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
 vim.lsp.config("*", {
     capabilities = capabilities,
+    root_markers = { ".git" },
 })
 
 vim.lsp.enable({
     "pyright",
-    "lua_ls",
+    "luals",
     "css_lsp",
     "html",
     "htmx",
     "djangohtml",
-    "emmet_ls",
-    "rust_analyzer",
+    "emmet",
+    "rust",
     "clangd",
     "dockerls",
     "docker_compose_language_service",
