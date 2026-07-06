@@ -11,6 +11,8 @@ sudo apt install -y \
   gcc g++ make tmux gh \
   zsh kitty \
   python3 python3-pip python3-venv python3-dev
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
 
 echo "🚀 Installing Node.js (LTS 20)..."
 if ! command -v node >/dev/null 2>&1; then
