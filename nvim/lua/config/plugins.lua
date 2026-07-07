@@ -6,12 +6,17 @@ vim.pack.add({
   "https://github.com/nvim-neotest/nvim-nio",
 })
 
--- ── File tree ───────────────────────────────────────────────────────────
+-- ── neotree ───────────────────────────────────────────────────────────
 vim.pack.add({
   "https://github.com/nvim-neo-tree/neo-tree.nvim",
 })
 require("neo-tree").setup({
   window = { position = "right" },
+  filesystem = {
+  filtered_items = {
+       hide_dotfiles = false
+  },
+}
 })
 vim.keymap.set("n", "<C-t>", "<cmd>Neotree toggle<cr>", {
   desc = "Neotree"
