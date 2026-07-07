@@ -520,3 +520,32 @@ vim.opt.undodir = undo_dir
 vim.keymap.set("n", "<leader>ut", "<cmd>UndotreeToggle<CR>", {
   desc = "Toggle Undotree",
 })
+
+-- ── Dashboard ───────────────────────────────────────────────────────────
+vim.pack.add({ "https://github.com/folke/snacks.nvim" })
+require("snacks").setup({
+  -- single-window UIs for vim.ui.select / vim.ui.input so dap's config picker
+  -- and input prompts don't fall back to the builtin (which noice splits into
+  -- two stacked popups: the message list in front, the cmdline input behind).
+  input = { enabled = true },
+  picker = { enabled = true, ui_select = true },
+  dashboard = {
+    preset = {
+        header = [[
+
+ ███╗   ██╗██╗   ██╗██╗███╗   ███╗
+ ████╗  ██║██║   ██║██║████╗ ████║
+ ██╔██╗ ██║██║   ██║██║██╔████╔██║
+ ██║╚██╗██║╚██╗ ██╔╝██║██║╚██╔╝██║
+ ██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║
+ ╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝
+
+      ]],
+    },
+    sections = {
+      { section = "header" },
+      { section = "keys",         gap = 1,    padding = 1 },
+      { section = "recent_files", padding = 1 },
+    },
+  },
+})
