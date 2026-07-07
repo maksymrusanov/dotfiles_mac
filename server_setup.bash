@@ -8,12 +8,8 @@ sudo apt update
 echo "🧰 Installing base dependencies..."
 sudo apt install -y \
   git curl unzip build-essential \
-  gcc g++ make tmux gh \
-  zsh kitty \
+  gcc g++ make \
   python3 python3-pip python3-venv python3-dev
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
 
 echo "🚀 Installing Node.js (LTS 20)..."
 if ! command -v node >/dev/null 2>&1; then
@@ -73,27 +69,8 @@ fi
 mkdir -p ~/.config
 
 cp -r "$DOTFILES_DIR/nvim" ~/.config/ || true
-cp -r "$DOTFILES_DIR/kitty" ~/.config/ || true
-cp "$DOTFILES_DIR/.zshrc" ~ || true
-cp "$DOTFILES_DIR/.tmux.conf" ~ || true
 
-echo "🧩 Installing zsh autosuggestions..."
 
-ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
-
-if [[ ! -d "$ZSH_CUSTOM" ]]; then
-  echo "⚠️ oh-my-zsh not installed (autosuggestions will not work)"
-else
-  if [[ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]]; then
-    git clone https://github.com/zsh-users/zsh-autosuggestions \
-      "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
-  fi
-fi
-
-echo "📦 Installing TPM..."
-if [[ ! -d "$HOME/.tmux/plugins/tpm" ]]; then
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
 echo $SHELL
 echo
 echo "✅ DONE"
