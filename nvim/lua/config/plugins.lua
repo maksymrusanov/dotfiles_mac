@@ -329,6 +329,9 @@ require("mason-lspconfig").setup({
   ensure_installed = {
     "lua_ls",
     "pyright",
+    "emmet_ls",
+    "cssls",
+    "html"
   },
 })
 require("mason-tool-installer").setup({
@@ -338,6 +341,7 @@ require("mason-tool-installer").setup({
     "black",
     "ruff",
   },})
+
 
 --─ mini───────────────────────────────────────────────────────────
 vim.pack.add({"https://github.com/echasnovski/mini.cursorword"})
