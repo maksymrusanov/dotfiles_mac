@@ -163,7 +163,7 @@ require("conform").setup({
             formatters_by_ft = {
                 css = { "prettier" },
                 htmldjango = { "prettier" },
-                html = { "prettier" },
+                html = { "htmlbeautifier" },
                 cpp = { "clang_format" },
                 c = { "clang_format" },
                 lua = { "stylua" },
@@ -329,9 +329,10 @@ require("mason-lspconfig").setup({
   ensure_installed = {
     "lua_ls",
     "pyright",
-    "emmet_ls",
+    "emmet_language_server",
     "cssls",
-    "html"
+    "html",
+    "rust_analyzer",
   },
 })
 require("mason-tool-installer").setup({
@@ -454,28 +455,19 @@ vim.pack.add({
 })
 require("nvim-treesitter").install({
   "bash",
-  "css",
-  "comment",
-  "gitcommit",
-  "gitignore",
-  "gitattributes",
-  "git_config",
-  "git_rebase",
-  "html",
-  "json",
+  "cpp",
+  "c",
+  "cmake",
+  "dockerfile",
   "lua",
+  "python",
+  "html",
+  "yaml",
+  "json",
   "markdown",
   "markdown_inline",
-  "python",
-  "regex",
-  "rust",
-  "ron",
-  "scss",
   "toml",
-  "vim",
-  "vimdoc",
-  "dockerfile",
-  "yaml",
+  "rust",
 })
 require("treesitter-context").setup({
   enable = true,
