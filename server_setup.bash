@@ -3,11 +3,18 @@ set -euo pipefail
 echo "📦 Updating system packages..."
 sudo apt update
 echo "🧰 Installing base dependencies..."
+
 sudo apt install -y \
+  # Git / GitHub
   git \
+  gh \
+  # Utils
   curl \
   wget \
   unzip \
+  tar \
+  xz-utils \
+  # Build tools
   build-essential \
   gcc \
   g++ \
@@ -15,25 +22,29 @@ sudo apt install -y \
   cmake \
   ninja-build \
   pkg-config \
-  xclip \
+  npm \
+  # C/C++ tooling (treesitter, bindgen)
   clang \
   libclang-dev \
   llvm-dev \
+  # Crypto/compression libs
   libssl-dev \
   zlib1g-dev \
+  # Neovim tools
   ripgrep \
   fd-find \
   fzf \
   jq \
+  xclip \
   tmux \
-  lazygit \
+  # Python
   python3 \
   python3-pip \
   python3-venv \
   python3-dev \
-  python3-colcon-common-extensions \
-  python3-rosdep \
-  python3-vcstool
+  python3-setuptools \ 
+  python3-wheel
+
 echo "🦀 Installing Rust..."
 if ! command -v rustc >/dev/null 2>&1; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -46,15 +57,7 @@ echo "🌳 Installing Tree-sitter CLI..."
 if ! command -v tree-sitter >/dev/null 2>&1; then
   cargo install tree-sitter-cli
 fi
-echo "🚀 Installing Node.js LTS 20..."
-if ! command -v node >/dev/null 2>&1; then
-  curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-  sudo apt install -y nodejs
-fi
-echo "📦 Installing global npm tools..."
-npm install -g \
-  neovim \
-  prettier
+
 echo "🟢 Versions:"
 echo "Node:"
 node --version
@@ -104,11 +107,6 @@ fi
 mkdir -p ~/.config
 rm -rf ~/.config/nvim
 cp -r "$DOTFILES_DIR/nvim" ~/.config/
-echo "🔧 Initializing rosdep..."
-if ! command -v rosdep >/dev/null 2>&1; then
-  sudo rosdep init || true
-fi
-rosdep update || true
 echo
 echo "✅ DONE"
 echo
