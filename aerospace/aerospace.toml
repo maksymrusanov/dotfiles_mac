@@ -18,7 +18,7 @@ preset = 'qwerty'
 cmd-h = [] # Disable "hide application"
 cmd-alt-h = [] # Disable "hide others"
 # apps
-cmd-enter = "exec-and-forget open -a /Applications/kitty.app"
+cmd-enter = "exec-and-forget open -a /Applications/Ghostty.app"
 alt-s = 'exec-and-forget open -a /Applications/Safari.app/'
 alt-t = 'exec-and-forget open -a /Applications/Telegram.app/'
 # keys binding
@@ -65,7 +65,7 @@ backspace = ['close-all-windows-but-current', 'mode main']
 #logic for place app in specfic screen
 # terminal → 1
 [[on-window-detected]]
-if.app-id = 'net.kovidgoyal.kitty'
+if.app-id = 'com.mitchellh.ghostty'
 run = "move-node-to-workspace 1"
 # browser → 2
 [[on-window-detected]]
