@@ -8,9 +8,9 @@ export PATH="$HOME/bin:/opt/homebrew/bin:$PATH"
 # ========================
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
-
+DISABLE_AUTO_TITLE="true"
 # минимальные плагины
-plugins=(zsh-autosuggestions)
+plugins=( git zsh-autosuggestions)
 
 
 source $ZSH/oh-my-zsh.sh
@@ -23,7 +23,6 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2
 # Prompt (git branch)
 # ========================
 autoload -Uz vcs_info
-precmd() { vcs_info }
 
 zstyle ':vcs_info:git:*' formats '%F{green}(%b)%f'
 
@@ -50,9 +49,9 @@ alias orbstack="open -a OrbStack"
 # ========================
 # tmux safe autostart
 # ========================
-if command -v tmux >/dev/null && [[ -z "$TMUX" && -t 1 && -z "$SSH_CONNECTION" ]]; then
-  tmux attach 2>/dev/null || tmux new-session
-fi
+#if command -v tmux >/dev/null && [[ -z "$TMUX" && -t 1 && -z "$SSH_CONNECTION" ]]; then
+#  tmux attach 2>/dev/null || tmux new-session
+#fi
 
 # ========================
 # uv completion
@@ -64,6 +63,5 @@ fi
 
 
 # opencode
-export PATH=/Users/max/.opencode/bin:$PATH
 
 
