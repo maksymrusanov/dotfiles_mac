@@ -5,16 +5,13 @@ sudo apt update
 echo "🧰 Installing base dependencies..."
 
 sudo apt install -y \
-  # Git / GitHub
   git \
   gh \
-  # Utils
   curl \
   wget \
   unzip \
   tar \
   xz-utils \
-  # Build tools
   build-essential \
   gcc \
   g++ \
@@ -23,21 +20,17 @@ sudo apt install -y \
   ninja-build \
   pkg-config \
   npm \
-  # C/C++ tooling (treesitter, bindgen)
   clang \
   libclang-dev \
   llvm-dev \
-  # Crypto/compression libs
   libssl-dev \
   zlib1g-dev \
-  # Neovim tools
   ripgrep \
   fd-find \
   fzf \
   jq \
   xclip \
   tmux \
-  # Python
   python3 \
   python3-pip \
   python3-venv \
