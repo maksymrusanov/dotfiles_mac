@@ -1,3 +1,4 @@
+
 -- ── Dependencies (shared) ───────────────────────────────────────────────
 vim.pack.add({
   "https://github.com/nvim-lua/plenary.nvim",
@@ -117,16 +118,28 @@ require("colorizer").setup({
 vim.pack.add({
   "https://github.com/bluz71/vim-moonfly-colors",
 })
+
 vim.cmd.colorscheme("moonfly")
+
 -- Transparent background
-vim.api.nvim_set_hl(0, "CursorLine", { bg = "NONE" })
-vim.api.nvim_set_hl(0, "CursorLineNr", { bg = "NONE" })
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 vim.api.nvim_set_hl(0, "SignColumn", { bg = "none" })
 vim.api.nvim_set_hl(0, "LineNr", { bg = "none" })
 vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 
+-- Cursor line
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
+
+vim.api.nvim_set_hl(0, "CursorLine", {
+  bg = "#1e1e1e",
+})
+
+vim.api.nvim_set_hl(0, "CursorLineNr", {
+  fg = "#ffffff",
+  bold = true,
+})
 -- ── fff───────────────────────────────────────────────────────────
 vim.pack.add({ 'https://github.com/dmtrKovalenko/fff.nvim' })
 vim.api.nvim_create_autocmd('PackChanged', {
@@ -163,11 +176,13 @@ require("conform").setup({
             formatters_by_ft = {
                 css = { "prettier" },
                 htmldjango = { "prettier" },
-                html = { "htmlbeautifier" },
+                html = { "prettier" },
                 cpp = { "clang_format" },
                 c = { "clang_format" },
                 lua = { "stylua" },
                 python = { "ruff", "black" },
+
+                docker={"prettier"}
             },
             format_on_save = {
                 lsp_fallback = true,
@@ -329,9 +344,11 @@ require("mason-lspconfig").setup({
   ensure_installed = {
     "lua_ls",
     "pyright",
-    "emmet_language_server",
     "cssls",
+    "emmet_ls",
     "html",
+    "dockerls",
+"docker_compose_language_service",
     "rust_analyzer",
   },
 })
