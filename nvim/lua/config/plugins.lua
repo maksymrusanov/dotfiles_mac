@@ -130,7 +130,6 @@ vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
 
 -- Cursor line
 vim.opt.cursorline = true
-vim.opt.cursorcolumn = true
 
 vim.api.nvim_set_hl(0, "CursorLine", {
   bg = "#1e1e1e",

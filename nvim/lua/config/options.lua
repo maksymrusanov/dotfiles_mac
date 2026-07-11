@@ -5,11 +5,6 @@ vim.opt.linebreak = true
 vim.opt.breakindent = true
 -- UI
 vim.opt.cursorline = true
-vim.opt.cursorcolumn = false
-vim.api.nvim_set_hl(0, "CursorLine", {
-  bg = "#2a2a2a",
-})
-vim.opt.signcolumn = "yes"
 vim.opt.termguicolors = true
 -- Indentation
 vim.opt.expandtab = true
